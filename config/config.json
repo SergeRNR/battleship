@@ -1,0 +1,17 @@
+{
+	"name": "Serge",
+	"port": 8888,
+	"session": {
+		"secret": "BreakOnTrough",
+		"key": "sid",
+		"cookie": {
+			"path": "/",
+			"httpOnly": true,
+			"maxAge": null
+		}
+	},
+	"image": {
+		"thumbnailSize" : "150"
+	},
+	"uploadFull": "/home/serge/Work/www/phonegapchat/www/uploads/"
+}
