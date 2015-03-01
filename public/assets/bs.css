@@ -1,5 +1,70 @@
+@font-face {
+  font-family: trueLies;
+  src: url('fonts/True Lies.ttf'); }
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   width: 100%; }
+
+.ninja {
+  display: none;
+  visibility: hidden; }
+
+.app {
+  background: -webkit-linear-gradient(top left, #04c5ff, #0040D0);
+  background: linear-gradient(to bottom right, #04c5ff, #0040D0);
+  box-sizing: border-box;
+  font-family: trueLies;
+  height: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 100%; }
+
+.game-controls {
+  border-right: 1px solid #000;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  padding: 10px;
+  width: 170px; }
+
+.sea {
+  display: inline-block;
+  width: calc(100% - 170px); }
+  .sea .battlefield {
+    height: 400px;
+    margin: 0 auto;
+    width: 400px; }
+    .sea .battlefield .scale-x, .sea .battlefield .scale-y {
+      cursor: default;
+      font-family: trueLies;
+      font-size: 120%;
+      line-height: 200%;
+      text-align: center; }
+    .sea .battlefield .scale-x {
+      height: 10%;
+      margin-left: 10%;
+      width: 90%; }
+      .sea .battlefield .scale-x .scale-char {
+        display: inline-block;
+        height: 100%;
+        width: 10%; }
+    .sea .battlefield .scale-y {
+      float: left;
+      height: 90%;
+      padding-top: 10%;
+      width: 10%; }
+      .sea .battlefield .scale-y .scale-char {
+        height: 10%; }
+    .sea .battlefield .fleet {
+      background-image: url('img/svgsquare.svg');
+      background-size: 10%;
+      border: 1px solid #000;
+      cursor: url('img/target.png'), auto;
+      height: 90%;
+      margin-left: 10%;
+      width: 90%; }

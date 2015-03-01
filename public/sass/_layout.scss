@@ -1,6 +1,79 @@
+@font-face {
+  font-family: trueLies;
+  src: url('fonts/True Lies.ttf');
+}
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
+}
+.ninja {
+  display: none;
+  visibility: hidden;
+}
+.app {
+  background: linear-gradient(to bottom right, $sea-light-color, $sea-dark-color);
+  box-sizing: border-box;
+  font-family: trueLies;
+  height: 100%;
+  user-select: none;
+  width: 100%;
+}
+.game-controls {
+  border-right: 1px solid #000;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  padding: 10px;
+  width: 170px;
+}
+.sea {
+  display: inline-block;
+  width: calc(100% - 170px);
+
+  .battlefield {
+    height: 400px;
+    margin: 0 auto;
+    width: 400px;
+
+    .scale-x, .scale-y {
+      cursor: default;
+      font-family: trueLies;
+      font-size: 120%;
+      line-height: 200%;
+      text-align: center;
+    }
+    .scale-x {
+      height: $scale-size;
+      margin-left: $scale-size;
+      width: $fleet-size;
+
+      .scale-char {
+        display: inline-block;
+        height: 100%;
+        width: 10%;
+      }
+    }
+    .scale-y {
+      float: left;
+      height: $fleet-size;
+      padding-top: $scale-size;
+      width: $scale-size;
+
+      .scale-char {
+        height: 10%;
+      }
+    }
+    .fleet {
+      background-image: url('img/svgsquare.svg');
+      background-size: 10%;
+      border: 1px solid #000;
+      cursor: url('img/target.png'),auto;
+      height: $fleet-size;
+      margin-left: $scale-size;
+      width: $fleet-size;
+    }
+  }
 }

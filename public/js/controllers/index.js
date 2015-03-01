@@ -1,0 +1,4 @@
+define([
+    './battlefieldCtrl',
+    './gameCtrl'
+], function () {});

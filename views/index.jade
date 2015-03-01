@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class='app')
+    div(class='game-controls') Menu
+    div(class='sea')
+      div(class='battlefield', ng-controller='BattlefieldCtrl')
+        div(class='scale-y')
+          each val in rows
+            div(class='scale-char')= val
+        div(class='scale-x')
+          each val in cols
+            div(class='scale-char')= val
+        div(class='fleet', ng-click='matrixClick($event)')
