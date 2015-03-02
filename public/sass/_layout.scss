@@ -76,7 +76,8 @@ html, body {
       width: $fleet-size;
     }
     .matrix-cell {
-      background-color: #000;
+      background-image: url('img/brush-square.svg');
+      background-size: 100%;
       position: absolute;
     }
   }
