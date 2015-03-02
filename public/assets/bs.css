@@ -68,3 +68,6 @@ html, body {
       height: 90%;
       margin-left: 10%;
       width: 90%; }
+    .sea .battlefield .matrix-cell {
+      background-color: #000;
+      position: absolute; }

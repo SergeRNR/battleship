@@ -12,3 +12,4 @@ block content
           each val in cols
             div(class='scale-char')= val
         div(class='fleet', ng-click='matrixClick($event)')
+          div(ng-repeat='cell in cells', class='matrix-cell', style='top:{{cell.top}}px; left:{{cell.left}}px; height:{{cell.size}}px; width:{{cell.size}}px;')
