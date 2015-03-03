@@ -24,20 +24,13 @@ html, body {
           user-select: none;
   width: 100%; }
 
-.game-controls {
-  border-right: 1px solid #000;
-  box-sizing: border-box;
-  display: inline-block;
-  height: 100%;
-  padding: 10px;
-  width: 170px; }
-
 .sea {
   display: inline-block;
-  width: calc(100% - 170px); }
+  width: 100%; }
   .sea .battlefield {
+    display: inline-block;
     height: 400px;
-    margin: 0 auto;
+    margin: 20px;
     width: 400px; }
     .sea .battlefield .scale-x, .sea .battlefield .scale-y {
       cursor: default;
@@ -72,3 +65,8 @@ html, body {
       background-image: url('img/brush-square.svg');
       background-size: 100%;
       position: absolute; }
+      .sea .battlefield .matrix-cell .dot {
+        background-image: url('img/dot.svg');
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position: 50%; }

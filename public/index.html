@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Battleship</title>
+    <link rel="stylesheet" type="text/css" href="assets/bs.css">
+</head>
+
+<body>
+    <div class="app">
+        <div class="sea" ng-controller="GameController">
+            <div ng-repeat="field in fields" class="battlefield">
+                <div class="scale-y">
+                    <div ng-repeat="y in scales.y" ng-bind="y" class="scale-char"></div>
+                </div>
+                <div class="scale-x">
+                    <div ng-repeat="x in scales.x" ng-bind="x" class="scale-char"></div>
+                </div>
+                <div class="fleet" ng-click="matrixClick($event)">
+                    <div ng-repeat="cell in cells" class="matrix-cell"
+                         style="top: {{cell.top}}px; left: {{cell.left}}px; height: {{cell.size}}px; width: {{cell.size}}px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/libs/require.js" type="text/javascript" data-main="js/main"></script>
+</body>
+
+</html>

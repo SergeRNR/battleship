@@ -1,8 +1,8 @@
 define(['./module'], function (controllers) {
     'use strict';
-    controllers.controller('GameCtrl', ['$scope',
+    controllers.controller('BattlefieldController', ['$scope',
         function ($scope) {
-            $scope.btnText = 'Test control!';
+
         }
     ]);
 });

@@ -1,4 +1,5 @@
 define([
     './battlefieldService',
-    './battleshipService'
+    './battleshipService',
+    './userService'
 ], function () {});

@@ -18,13 +18,13 @@ define([
 
         var ships = {
             BF_ID_1 : {
-                type: 1, // 1 - own, 2 - enemy, 3 - ally
+                type: 1, // 1 - own, 2 - enemy, 3 - ally, 4 - AI
                 ships: [ ship1, ship2 ]
             }
         };
 
         this.getShips = function () {
-            return ships;
+            return [];
         };
     });
 });

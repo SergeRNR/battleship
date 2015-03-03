@@ -6,8 +6,10 @@ define([
     services.service('BattlefieldService', function () {
         var ROWS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
             COLS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+
             fields = [],
-            $sea = document.querySelector('.container'),
+            cells = [],
+
             size = 400; // to be calculated
 
         var setSizes_ = function (el) {
@@ -63,18 +65,37 @@ define([
             console.timeEnd('t');
         };
 
-        var Field = function () {
-            this.$el = document.createElement('div');
-            this.$el.className = 'battlefield';
-            this.$el.addEventListener('click', function (e) {
-                console.log(getCoords(e));
-                //testRandom();
-            });
+        this.addField = function (type) {
+            var data = {
+                type: type,
+                id: Math.floor(Math.random() * 10E7)
+            };
+            fields.push(data);
         };
 
-        Field.prototype.render = function () {
-            setSizes_(this.$el);
-            $sea.appendChild(this.$el);
+        this.getFields = function () {
+            return fields;
+        };
+
+        this.addCell = function (e, code, field, type) {
+            if (e.target.className.indexOf('fleet') !== -1) {
+                var code = this.getXYCode(e),
+                    xy = this.getCodeXY(code, e.currentTarget);
+
+                console.log(code);
+                cells.push({ code: code, type: '', top: xy.y, left: xy.x, size: xy.s });
+            }
+        };
+
+        this.getCells = function () {
+            return cells;
+        };
+
+        this.getScales = function () {
+            return {
+                y: ROWS,
+                x: COLS
+            };
         };
     });
 });
