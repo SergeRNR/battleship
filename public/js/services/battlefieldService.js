@@ -68,5 +68,10 @@ define([
 
             return cell_i === -1 || ship_i === -1;
         };
+
+        this.noCellsLeft = function (field) {
+            return (this.getCells()[field] ? this.getCells()[field].length : 0) +
+                    (BSS.getShips()[field] ? BSS.getShips()[field].length : 0) === 100;
+        };
     }]);
 });

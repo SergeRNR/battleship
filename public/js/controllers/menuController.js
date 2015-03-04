@@ -12,16 +12,7 @@ define(['./module'], function (controllers) {
             };
 
             $scope.addShips = function () {
-                var code,
-                    i;
-
-                for (i=4; i--;) {
-                    code = XYS.getRandomCell();
-                    BSS.addShip(code, 1, 1);
-
-                    code = XYS.getRandomCell();
-                    BSS.addShip(code, 2, 1);
-                }
+                BSS.addRandomShips();
             };
         }
     ]);

@@ -35,5 +35,9 @@ define([
                 return false;
             }
         };
+
+        this.addRandomShips = function () {
+            var code = XYS.getRandomCell();
+        };
     }]);
 });

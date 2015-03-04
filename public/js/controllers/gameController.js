@@ -16,7 +16,7 @@ define(['./module'], function (controllers) {
 
             var AI = function (id) {
                 var code = XYS.getRandomCell();
-                while (!BFS.isAvailableCell(code, id)) {
+                while (!BFS.isAvailableCell(code, id) || BFS.noCellsLeft(id)) {
                     code = XYS.getRandomCell();
                 }
                 BFS.hitField(code, id);
@@ -37,6 +37,7 @@ define(['./module'], function (controllers) {
                     if (r === 7)
                         BSS.addShip(code, id, 1);
                     BFS.hitField(code, id);
+                    AI(1);
 
                 } else if (className.indexOf('ship') !== -1) {
                     //BSS.hitShip(code, field);

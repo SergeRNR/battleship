@@ -17,7 +17,7 @@ html, body {
   background: linear-gradient(to bottom right, $sea-light-color, $sea-dark-color);
   box-sizing: border-box;
   font-family: trueLies;
-  height: 100%;
+  min-height: 100%;
   position: relative;
   user-select: none;
   width: 100%;

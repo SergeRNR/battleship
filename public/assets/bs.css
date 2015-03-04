@@ -17,7 +17,7 @@ html, body {
   background: linear-gradient(to bottom right, #04c5ff, #0040D0);
   box-sizing: border-box;
   font-family: trueLies;
-  height: 100%;
+  min-height: 100%;
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
