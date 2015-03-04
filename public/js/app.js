@@ -10,5 +10,5 @@ define([
         'app.controllers',
         'app.services'
         //'ngRoute'
-    ])
+    ]);
 });

@@ -1,12 +1,12 @@
 define(['./module'], function (controllers) {
     'use strict';
-    controllers.controller('GameController', ['$scope', 'BattlefieldService', 'BattleshipService', 'UserService',
-        function ($scope, BFS, BSS, US) {
+    controllers.controller('GameController', ['$scope', 'BattlefieldService', 'BattleshipService', 'UserService', 'XYService',
+        function ($scope, BFS, BSS, US, XYS) {
             var init = function () {
                 // DOM elements
-                $scope.scales = BFS.getScales();
+                $scope.scales = XYS.getScales();
                 $scope.fields = BFS.getFields();
-                $scope.cells = BFS.getCells();
+                $scope.hits = BFS.getCells();
                 $scope.ships = BSS.getShips();
 
                 // test fields
@@ -14,11 +14,36 @@ define(['./module'], function (controllers) {
                 BFS.addField('own');
             };
 
-            init();
-
-            $scope.matrixClick = function (e) {
-                BFS.addCell(e);
+            var AI = function (id) {
+                var code = XYS.getRandomCell();
+                while (!BFS.isAvailableCell(code, id)) {
+                    code = XYS.getRandomCell();
+                }
+                BFS.hitField(code, id);
             };
+
+            $scope.matrixClick = function (e, id) {
+                var className = e.target.className,
+                    code = XYS.getXYCode(e);
+
+                if (BFS.isMine(id)) {
+                    console.log('This is your fleet!');
+                    //AI(id);
+                    return;
+                }
+
+                if (className.indexOf('fleet') !== -1) {
+                    var r = Math.floor(Math.random()*10);
+                    if (r === 7)
+                        BSS.addShip(code, id, 1);
+                    BFS.hitField(code, id);
+
+                } else if (className.indexOf('ship') !== -1) {
+                    //BSS.hitShip(code, field);
+                }
+            };
+
+            init();
         }
     ]);
 });

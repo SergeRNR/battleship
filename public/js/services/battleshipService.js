@@ -3,28 +3,37 @@ define([
     'underscore'
 ], function (services, _) {
     'use strict';
-    services.service('BattleshipService', function () {
-        var ship1 = {
-            coords: 'A1-A3',
-            length: 3,
-            orientation: 'vert', // 'horiz'
-            status: 2, // 2 - battleworthy, 1 - damaged, 0 - sunk
-            damaged_cells: ['A2','A3']
-        };
+    services.service('BattleshipService', ['XYService', function (XYS) {
+        var ships = {};
 
-        var ship2 = {
+        this.addShip = function (code, field, status) {
+            var xy = XYS.getCodeXY(code, field);
 
-        };
+            if (!ships[field])
+                ships[field] = [];
 
-        var ships = {
-            BF_ID_1 : {
-                type: 1, // 1 - own, 2 - enemy, 3 - ally, 4 - AI
-                ships: [ ship1, ship2 ]
-            }
+            ships[field].push({
+                code: code,
+                status: status,
+                top: xy.y,
+                left: xy.x,
+                size: xy.s
+            });
         };
 
         this.getShips = function () {
-            return [];
+            return ships;
         };
-    });
+
+        this.hitShip = function (code, field) {
+            var i = _.findIndex(ships[field], function (n) {return n.code == code});
+
+            if (i !== -1) {
+                ships[field][i].status = 0;
+                return true;
+            } else {
+                return false;
+            }
+        };
+    }]);
 });

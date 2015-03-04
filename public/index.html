@@ -8,19 +8,33 @@
 
 <body>
     <div class="app">
+        <div class="game-controls" ng-controller="MenuController">
+            Menu <br />
+            <button ng-click="changeState()">Start/Stop</button><br />
+            <button ng-click="addShips()">Add ships</button>
+        </div>
+
         <div class="sea" ng-controller="GameController">
+
             <div ng-repeat="field in fields" class="battlefield">
                 <div class="scale-y">
                     <div ng-repeat="y in scales.y" ng-bind="y" class="scale-char"></div>
                 </div>
+
                 <div class="scale-x">
                     <div ng-repeat="x in scales.x" ng-bind="x" class="scale-char"></div>
                 </div>
-                <div class="fleet" ng-click="matrixClick($event)">
-                    <div ng-repeat="cell in cells" class="matrix-cell"
-                         style="top: {{cell.top}}px; left: {{cell.left}}px; height: {{cell.size}}px; width: {{cell.size}}px;"></div>
+
+                <div id="{{field.id}}" class="fleet" ng-click="matrixClick($event, field.id)">
+                    <div ng-repeat="hit in hits[field.id]" class="matrix-cell hit"
+                         style="top: {{hit.top}}px; left: {{hit.left}}px; height: {{hit.size}}px; width: {{hit.size}}px;"></div>
+
+                    <div ng-repeat="ship in ships[field.id]" class="matrix-cell" ng-class="ship.status ? 'ship' : 'dead'"
+                         style="top: {{ship.top}}px; left: {{ship.left}}px; height: {{ship.size}}px; width: {{ship.size}}px;">
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 

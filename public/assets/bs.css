@@ -6,7 +6,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%; }
+  position: relative; }
 
 .ninja {
   display: none;
@@ -18,15 +18,35 @@ html, body {
   box-sizing: border-box;
   font-family: trueLies;
   height: 100%;
+  position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   width: 100%; }
 
+.game-controls {
+  border-right: 1px solid #000;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px;
+  position: fixed;
+  width: 170px; }
+  .game-controls button {
+    background-color: #000;
+    border: 0;
+    color: #04c5ff;
+    cursor: pointer;
+    font-family: trueLies;
+    font-size: 18px;
+    height: 40px;
+    margin: 5px;
+    width: 100px; }
+    .game-controls button:active {
+      opacity: 0.7; }
+
 .sea {
-  display: inline-block;
-  width: 100%; }
+  margin-left: 170px; }
   .sea .battlefield {
     display: inline-block;
     height: 400px;
@@ -61,12 +81,16 @@ html, body {
       height: 90%;
       margin-left: 10%;
       width: 90%; }
-    .sea .battlefield .matrix-cell {
-      background-image: url('img/brush-square.svg');
-      background-size: 100%;
-      position: absolute; }
-      .sea .battlefield .matrix-cell .dot {
+      .sea .battlefield .fleet .matrix-cell {
+        position: absolute; }
+      .sea .battlefield .fleet .matrix-cell.hit {
         background-image: url('img/dot.svg');
-        background-size: 70%;
+        background-size: 40%;
         background-repeat: no-repeat;
         background-position: 50%; }
+      .sea .battlefield .fleet .matrix-cell.ship {
+        background-image: url('img/brush-square.svg');
+        background-size: 100%; }
+      .sea .battlefield .fleet .matrix-cell.dead {
+        background-image: url('img/red_x.svg');
+        background-size: 100%; }

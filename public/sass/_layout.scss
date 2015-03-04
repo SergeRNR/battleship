@@ -7,7 +7,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
+  position: relative;
 }
 .ninja {
   display: none;
@@ -18,21 +18,36 @@ html, body {
   box-sizing: border-box;
   font-family: trueLies;
   height: 100%;
+  position: relative;
   user-select: none;
   width: 100%;
 }
-//.game-controls {
-//  border-right: 1px solid #000;
-//  box-sizing: border-box;
-//  display: inline-block;
-//  height: 100%;
-//  padding: 10px;
-//  width: 170px;
-//}
+.game-controls {
+  border-right: 1px solid #000;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px;
+  position: fixed;
+  width: 170px;
+
+  button {
+    background-color: #000;
+    border: 0;
+    color: $sea-light-color;
+    cursor: pointer;
+    font-family: trueLies;
+    font-size: 18px;
+    height: 40px;
+    margin: 5px;
+    width: 100px;
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}
 .sea {
-  display: inline-block;
-  width: 100%;
-//  width: calc(100% - 181px);
+  margin-left: 170px;
 
   .battlefield {
     display: inline-block;
@@ -76,17 +91,24 @@ html, body {
       height: $fleet-size;
       margin-left: $scale-size;
       width: $fleet-size;
-    }
-    .matrix-cell {
-      background-image: url('img/brush-square.svg');
-      background-size: 100%;
-      position: absolute;
 
-      .dot {
+      .matrix-cell {
+        position: absolute;
+      }
+
+      .matrix-cell.hit {
         background-image: url('img/dot.svg');
-        background-size: 70%;
+        background-size: 40%;
         background-repeat: no-repeat;
         background-position: 50%;
+      }
+      .matrix-cell.ship {
+        background-image: url('img/brush-square.svg');
+        background-size: 100%;
+      }
+      .matrix-cell.dead {
+        background-image: url('img/red_x.svg');
+        background-size: 100%;
       }
     }
   }

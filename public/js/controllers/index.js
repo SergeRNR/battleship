@@ -1,4 +1,4 @@
 define([
-    './battlefieldController',
+    './menuController',
     './gameController'
 ], function () {});
