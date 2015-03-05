@@ -3,7 +3,7 @@ define([
     'underscore'
 ], function (services, _) {
     'use strict';
-    services.service('UserService', function () {
+    services.service('PlayerService', function () {
 
     });
 });

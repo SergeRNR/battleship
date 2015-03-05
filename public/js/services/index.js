@@ -1,6 +1,6 @@
 define([
     './battlefieldService',
     './battleshipService',
-    './userService',
+    './playerService',
     './xyService'
 ], function () {});

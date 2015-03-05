@@ -56,7 +56,7 @@ define([
             console.time('The fleet is ready!');
             _.each(fleet, function (f) {
                 var codes = XYS.getShipXY(f),
-                    id = Math.floor(Math.random()*10E7);
+                    id = Math.floor(Math.random()*1e7);
 
                 _.each(codes, function (c) {
                     self.addShip(id, c, field, 1);

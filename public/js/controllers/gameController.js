@@ -1,6 +1,6 @@
 define(['./module'], function (controllers) {
     'use strict';
-    controllers.controller('GameController', ['$scope', 'BattlefieldService', 'BattleshipService', 'UserService', 'XYService',
+    controllers.controller('GameController', ['$scope', 'BattlefieldService', 'BattleshipService', 'PlayerService', 'XYService',
         function ($scope, BFS, BSS, US, XYS) {
             var init = function () {
                 // DOM elements
@@ -33,7 +33,7 @@ define(['./module'], function (controllers) {
                 }
 
                 if (className.indexOf('fleet') !== -1) {
-                    AI(1);
+                    //AI(1);
                 }
             };
 

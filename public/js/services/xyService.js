@@ -7,8 +7,8 @@ define([
         var ROWS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
             COLS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
             cell_size = 36,
-            ships_coord = [],
-            ships_area = [],
+            ships_coord = new Array(100),
+            ships_area = new Array(100),
 
             self = this;
 
@@ -21,11 +21,10 @@ define([
         };
 
         var is_free = function (codes) {
-            var c;
-
-            for (var i=codes.length; i--;) {
+            var c, i;
+            for (i=codes.length; i--;) {
                 c = codes[i];
-                if ( _.contains(ships_coord, c) || _.contains(ships_area, c) ) {
+                if ( ships_coord[c] || ships_area[c] ) {
                     return false;
                 }
             }
@@ -35,11 +34,12 @@ define([
         var get_ship_matrix = function (base, type) {
             var hash = [],
                 axle,
+                l = type-1,
                 j;
 
-            if (in_range(base.x + type-1)) {
-                axle = [],
-                    j = type-1;
+            if (in_range(base.x + l)) {
+                axle = [];
+                j = l;
                 while (j > -1) {
                     axle.push(self.getXYCode(base.x + j, base.y));
                     j--;
@@ -47,9 +47,9 @@ define([
                 hash.push(axle);
             }
 
-            if (in_range(base.y + type-1)) {
+            if (in_range(base.y + l)) {
                 axle = [],
-                    j = type-1;
+                    j = l;
                 while (j > -1) {
                     axle.push(self.getXYCode(base.x, base.y + j));
                     j--;
@@ -85,6 +85,16 @@ define([
             return _.uniq(result);
         };
 
+        var add_codes = function (codes) {
+            _.each(codes, function (c) {
+                ships_coord[c] = 1;
+            });
+            var area = get_ship_area(codes);
+            _.each(area, function (a) {
+                ships_area[a] = 1;
+            });
+        };
+
         this.getScales = function () {
             return {
                 y: ROWS,
@@ -107,19 +117,15 @@ define([
             return ROWS[y] + COLS[x];
         };
 
-        this.getCodeXY = function (code, field) {
-            var el = getFieldDOM(field),
-                props = el.getBoundingClientRect(),
-                cell_size = (props.width-2) / 10,
-                arr = code.split(''),
-                x = arr[2] ? COLS.indexOf(arr[1]+arr[2]) : COLS.indexOf(arr[1]),
-                y = ROWS.indexOf(arr[0]);
-
-            return {x:x, y:y, s:cell_size};
+        this.getCodeXY = function (code) {
+            var x = code % 10,
+                y = Math.floor(code / 10);
+            return {x:x, y:y};
         };
 
         this.getXYCode = function (x,y) {
-            return ROWS[y] + COLS[x];
+            return y*10+x;
+            //return ROWS[y] + COLS[x];
         };
 
         this.getRandomCell = function () {
@@ -128,7 +134,7 @@ define([
             return {
                 x: x,
                 y: y,
-                cell: ROWS[y] + COLS[x]
+                code: y*10+x
             };
         };
 
@@ -162,8 +168,7 @@ define([
                 codes = check_matrix();
             }
 
-            ships_coord = ships_coord.concat(codes);
-            ships_area = ships_area.concat(get_ship_area(codes));
+            add_codes(codes);
 
             return codes;
         };
