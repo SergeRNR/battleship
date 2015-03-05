@@ -15,16 +15,16 @@ define(['./module'], function (controllers) {
             };
 
             var AI = function (id) {
-                var code = XYS.getRandomCell();
+                var code = XYS.getRandomCell().cell;
                 while (!BFS.isAvailableCell(code, id) || BFS.noCellsLeft(id)) {
-                    code = XYS.getRandomCell();
+                    code = XYS.getRandomCell().cell;
                 }
                 BFS.hitField(code, id);
             };
 
             $scope.matrixClick = function (e, id) {
                 var className = e.target.className,
-                    code = XYS.getXYCode(e);
+                    code = XYS.getECode(e);
 
                 if (BFS.isMine(id)) {
                     console.log('This is your fleet!');
@@ -33,14 +33,7 @@ define(['./module'], function (controllers) {
                 }
 
                 if (className.indexOf('fleet') !== -1) {
-                    var r = Math.floor(Math.random()*10);
-                    if (r === 7)
-                        BSS.addShip(code, id, 1);
-                    BFS.hitField(code, id);
                     AI(1);
-
-                } else if (className.indexOf('ship') !== -1) {
-                    //BSS.hitShip(code, field);
                 }
             };
 

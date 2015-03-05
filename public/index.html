@@ -27,10 +27,10 @@
 
                 <div id="{{field.id}}" class="fleet" ng-click="matrixClick($event, field.id)">
                     <div ng-repeat="hit in hits[field.id]" class="matrix-cell hit"
-                         style="top: {{hit.top}}px; left: {{hit.left}}px; height: {{hit.size}}px; width: {{hit.size}}px;"></div>
+                         style="top: {{hit.y * hit.size}}px; left: {{hit.x * hit.size}}px; height: {{hit.size}}px; width: {{hit.size}}px;"></div>
 
-                    <div ng-repeat="ship in ships[field.id]" class="matrix-cell" ng-class="ship.status ? 'ship' : 'dead'"
-                         style="top: {{ship.top}}px; left: {{ship.left}}px; height: {{ship.size}}px; width: {{ship.size}}px;">
+                    <div ng-repeat="ship in ships[field.id]" class="matrix-cell" ng-class="ship.state ? 'ship' : 'dead'"
+                         style="top: {{ship.y * ship.size}}px; left: {{ship.x * ship.size}}px; height: {{ship.size}}px; width: {{ship.size}}px;">
                     </div>
                 </div>
             </div>

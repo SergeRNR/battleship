@@ -90,6 +90,7 @@ html, body {
       cursor: url('img/target.png'),auto;
       height: $fleet-size;
       margin-left: $scale-size;
+      position: relative;
       width: $fleet-size;
 
       .matrix-cell {

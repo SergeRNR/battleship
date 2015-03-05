@@ -4,21 +4,34 @@ define([
 ], function (services, _) {
     'use strict';
     services.service('BattleshipService', ['XYService', function (XYS) {
-        var ships = {};
+        var ships = {},
+            fleet = [4,3,3,2,2,2,1,1,1,1],
+            //fleet = [1],
 
-        this.addShip = function (code, field, status) {
+            self = this;
+
+        var Ship = function (id, code, xy, state) {
+            this.id = id;
+            this.code = code;
+            this.state = state;
+            this.y = xy.y;
+            this.x = xy.x;
+        };
+
+        Ship.prototype.size = XYS.getCellSize();
+
+        Ship.prototype.setState = function (state) {
+            this.state = state;
+        };
+
+        this.addShip = function (id, code, field, state) {
             var xy = XYS.getCodeXY(code, field);
 
             if (!ships[field])
                 ships[field] = [];
 
-            ships[field].push({
-                code: code,
-                status: status,
-                top: xy.y,
-                left: xy.x,
-                size: xy.s
-            });
+            ships[field].push(new Ship(id, code, xy, 1));
+
         };
 
         this.getShips = function () {
@@ -26,18 +39,30 @@ define([
         };
 
         this.hitShip = function (code, field) {
-            var i = _.findIndex(ships[field], function (n) {return n.code == code});
+            var ship = _.findWhere(ships[field], {code: code});
 
-            if (i !== -1) {
-                ships[field][i].status = 0;
+            if (ship) {
+                ship.setState(0);
                 return true;
             } else {
                 return false;
             }
         };
 
-        this.addRandomShips = function () {
-            var code = XYS.getRandomCell();
+        this.addRandomShips = function (field) {
+            if (ships[field])
+                return;
+
+            console.time('The fleet is ready!');
+            _.each(fleet, function (f) {
+                var codes = XYS.getShipXY(f),
+                    id = Math.floor(Math.random()*10E7);
+
+                _.each(codes, function (c) {
+                    self.addShip(id, c, field, 1);
+                });
+            });
+            console.timeEnd('The fleet is ready!');
         };
     }]);
 });

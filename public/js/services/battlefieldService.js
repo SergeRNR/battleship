@@ -36,8 +36,8 @@ define([
 
             hits[field].push({
                 code: code,
-                top: xy.y,
-                left: xy.x,
+                y: xy.y,
+                x: xy.x,
                 size: xy.s
             });
         };
@@ -57,7 +57,7 @@ define([
 
         this.isAvailableCell = function (code, field) {
             var cell_i = _.findIndex(hits[field], function (n) {return n.code == code}),
-                ship_i = _.findIndex(BSS.getShips()[field], function (n) {return n.code == code && n.status === 0});
+                ship_i = _.findIndex(BSS.getShips()[field], function (n) {return n.code == code && n.state === 0});
 
             if (cell_i !== -1)
                 return false;

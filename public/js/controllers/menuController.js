@@ -12,7 +12,7 @@ define(['./module'], function (controllers) {
             };
 
             $scope.addShips = function () {
-                BSS.addRandomShips();
+                BSS.addRandomShips(1);
             };
         }
     ]);

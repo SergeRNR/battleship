@@ -80,6 +80,7 @@ html, body {
       cursor: url('img/target.png'), auto;
       height: 90%;
       margin-left: 10%;
+      position: relative;
       width: 90%; }
       .sea .battlefield .fleet .matrix-cell {
         position: absolute; }
