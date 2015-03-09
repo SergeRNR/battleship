@@ -1,14 +1,7 @@
-define([
-    'angular',
-    './angular-modules',
-    './controllers/index',
-    './services/index'
-], function (ng) {
-    'use strict';
+'use strict';
 
-    return ng.module('app', [
-        'app.controllers',
-        'app.services'
-        //'ngRoute'
-    ]);
-});
+var angular = require('angular');
+var app = angular.module('bsApp', []);
+
+require('./services');
+require('./controllers');

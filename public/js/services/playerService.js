@@ -1,9 +1,8 @@
-define([
-    './module',
-    'underscore'
-], function (services, _) {
-    'use strict';
-    services.service('PlayerService', function () {
+'use strict';
+var angular = require('angular'),
+    _ = require('underscore');
 
-    });
+angular.module('bsApp')
+.service('PlayerService', function () {
+
 });

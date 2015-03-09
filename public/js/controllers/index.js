@@ -1,4 +1,4 @@
-define([
-    './menuController',
-    './gameController'
-], function () {});
+'use strict';
+
+require('./menuController');
+require('./gameController');
