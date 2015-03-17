@@ -10,7 +10,3 @@ gulp.task('build:css', function () {
         .pipe(autoprefixer(config.autoprefixer.browsers))
         .pipe(gulp.dest('./public/assets'));
 });
-
-gulp.task('watch', function () {
-    gulp.watch('./public/sass/*.scss', ['build:css']);
-});

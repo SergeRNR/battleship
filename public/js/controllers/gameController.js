@@ -3,8 +3,8 @@ var angular = require('angular');
 
 angular.module('bsApp')
 .controller('GameController', [
-    '$scope', 'BattlefieldService', 'BattleshipService', 'PlayerService', 'XYService',
-    function ($scope, BFS, BSS, US, XYS) {
+    '$scope', 'BattlefieldService', 'BattleshipService', 'PlayerService', 'XYService', 'WebsocketService',
+    function ($scope, BFS, BSS, US, XYS, WSS) {
         var init = function () {
             // DOM elements
             $scope.scales = XYS.getScales();
@@ -15,6 +15,8 @@ angular.module('bsApp')
             // test fields
             BFS.addField('AI');
             BFS.addField('own');
+
+            WSS.io.connect();
         };
 
         var AI = function (id) {
@@ -43,6 +45,8 @@ angular.module('bsApp')
             if (className.indexOf('fleet') !== -1) {
                 //AI(1);
             }
+
+            WSS.io.emit('my_hit', {code: code});
         };
 
         init();
