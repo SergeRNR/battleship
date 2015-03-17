@@ -106,8 +106,8 @@ angular.module('bsApp')
         var props = e.target.getBoundingClientRect(),
             cell_size = (props.width-2) / 10,
             cursor_correction = 14,
-            x = e.x - props.left + cursor_correction,
-            y = e.y - props.top + cursor_correction;
+            x = e.clientX - props.left + cursor_correction,
+            y = e.clientY - props.top + cursor_correction;
 
         x = Math.floor(x / cell_size); // cell index
         x = Math.min(x, 9); // prevent fault of custom cursor

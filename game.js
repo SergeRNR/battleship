@@ -9,7 +9,7 @@ module.exports.initGame = function (io, socket) {
 
     var createGame = function () {
         var gameID = _.random(1E4, 1E5-1);
-        this.emit('newGameCreated', {gameID: gameID, mySocketId: this.id});
+        this.emit('newGameCreated', {gameID: gameID, socketID: this.id});
         this.join(gameID.toString());
     };
 
@@ -23,7 +23,6 @@ module.exports.initGame = function (io, socket) {
 
     var hit = function (data) {
         console.log('Hit the', data.code, 'cell');
-        console.log(this);
         io.emit('hit', {code: data.code})
     };
 
