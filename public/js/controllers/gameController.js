@@ -3,9 +3,9 @@ var angular = require('angular');
 
 angular.module('bsApp')
 .controller('GameController', [
-    '$scope', 'BattlefieldService', 'BattleshipService', 'PlayerService', 'XYService', 'WebsocketService',
-    function ($scope, BFS, BSS, US, XYS, WSS) {
-        var init = function () {
+    '$scope', 'BattlefieldService', 'BattleshipService', 'XYService', 'GameManager',
+    function ($scope, BFS, BSS, XYS, GM) {
+        (function () {
             // DOM elements
             $scope.scales = XYS.getScales();
             $scope.fields = BFS.getFields();
@@ -15,9 +15,7 @@ angular.module('bsApp')
             // test fields
             BFS.addField('AI');
             BFS.addField('own');
-
-            WSS.io.connect();
-        };
+        })();
 
         var AI = function (id) {
             var code = XYS.getRandomCell().cell;
@@ -46,9 +44,10 @@ angular.module('bsApp')
                 //AI(1);
             }
 
-            WSS.io.emit('my_hit', {code: code});
+            GM.hit(code);
         };
 
-        init();
+        this.game = GM;
+        this.game.startGame();
     }
 ]);

@@ -5,16 +5,24 @@ var angular = require('angular'),
 
 angular.module('bsApp')
 .service('WebsocketService', function () {
-    var IO = io();
-    IO.on('connect', function () {
+    var socket = io();
 
-        console.log('I\'m connected to the NodeJS server');
+    socket.on('connected', function (data) {
+        console.log(data.message);
 
-        IO.on('hit', function (data) {
+        socket.on('newGameCreated', function (data) {
+            console.log('New game:', data);
+        });
+
+        socket.on('playerJoinedGame', function (data) {
+            console.log('The player:', data.socketID, ' joined the game', data.gameID);
+        });
+
+        socket.on('hit', function (data) {
             console.log(data);
         });
 
     });
 
-    this.io = IO;
+    this.socket = socket;
 });

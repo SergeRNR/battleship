@@ -10,8 +10,11 @@
     <div class="app" ng-app="bsApp">
         <div class="game-controls" ng-controller="MenuController">
             Menu <br />
-            <button ng-click="changeState()">Start/Stop</button><br />
-            <button ng-click="addShips()">Add ships</button>
+            <button ng-click="addShips()">add ships</button><br />
+            <button ng-click="createGame()">create game</button><br />
+            <hr />
+            <input type="text" placeholder="code" ng-model="gameCode" maxlength="5"/>
+            <button ng-click="joinGame()">join game</button>
         </div>
 
         <div class="sea" ng-controller="GameController">
