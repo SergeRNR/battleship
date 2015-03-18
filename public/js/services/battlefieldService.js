@@ -4,8 +4,8 @@ var angular = require('angular'),
 
 angular.module('bsApp')
 .service('BattlefieldService', ['BattleshipService', 'XYService', function (BSS, XYS) {
-    var fields = [],
-        hits = {},
+    var fields = window.fields = [],
+        hits = window.hits = {},
         my_field = 0,
         size = 400; // to be calculated
 
@@ -13,14 +13,13 @@ angular.module('bsApp')
         el.style.height = el.style.width = size+'px';
     };
 
-    this.addField = function (type) {
+    this.addField = function (id, own) {
         var data = {
-            type: type,
-            id: (type === 'own' ? 1 : 2)
+            id: id
         };
         fields.push(data);
 
-        if (type === 'own')
+        if (own)
             my_field = data.id;
     };
 
@@ -38,7 +37,7 @@ angular.module('bsApp')
             code: code,
             y: xy.y,
             x: xy.x,
-            size: xy.s
+            size: XYS.getCellSize()
         });
     };
 

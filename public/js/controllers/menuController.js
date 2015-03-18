@@ -23,7 +23,7 @@ angular.module('bsApp')
         };
 
         $scope.addShips = function () {
-            BSS.addRandomShips(1);
+            BSS.addRandomShips(GM.getUserID());
         };
     }
 ]);

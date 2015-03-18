@@ -13,6 +13,6 @@ module.exports = {
 
     server: {
         env: env,
-        debugPort: 5860
+        debugPort: 5855
     }
 };

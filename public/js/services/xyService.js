@@ -102,7 +102,7 @@ angular.module('bsApp')
         };
     };
 
-    this.getECode = function (e) {
+    this.getECode = function (e, digit) {
         var props = e.target.getBoundingClientRect(),
             cell_size = (props.width-2) / 10,
             cursor_correction = 14,
@@ -114,7 +114,8 @@ angular.module('bsApp')
         y = Math.floor(y / cell_size);
         y = Math.min(y, 9);
 
-        return ROWS[y] + COLS[x];
+        //return ROWS[y] + COLS[x];
+        return this.getXYCode(x,y);
     };
 
     this.getCodeXY = function (code) {
