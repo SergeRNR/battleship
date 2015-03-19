@@ -20,7 +20,10 @@ angular.module('bsApp')
         socket.on('newGameCreated', onNewGameCreated);
         socket.on('playerJoinedGame', onPlayerJoinedGame);
         socket.on('hit', onHit);
+        socket.on('rivalShipDamaged', onRivalShipDamaged);
         socket.on('gameError', onError);
+
+        socket.on('test', onTest);
     });
 
     // SOCKET HANDLERS
@@ -41,6 +44,7 @@ angular.module('bsApp')
     var onPlayerJoinedGame = function (data) {
         console.log('The player:', data.socketID, ' joined the game', data.gameID);
         rivalID = data.socketID;
+        gameID = gameID || data.gameID;
 
         // create rival's field
         $rootScope.$apply(function(){
@@ -53,12 +57,26 @@ angular.module('bsApp')
             console.log('Your fleet was attacked:', data);
 
         $rootScope.$apply(function(){
-            BFS.hitField(data.code, data.socketID);
+            var result = BFS.hitField(data.code, data.socketID);
+            if (result)
+                socket.emit('shipDamaged', { gameID: gameID, code: data.code });
+        });
+    };
+
+    var onRivalShipDamaged = function (data) {
+        console.warn('You\'ve got this asshole!', data);
+        // add damaged ship
+        $rootScope.$apply(function(){
+            BSS.addShip(null, data.code, data.socketID, 0);
         });
     };
 
     var onError = function (data) {
         console.warn(data.message);
+    };
+
+    var onTest = function (data) {
+        console.log('client', data.socketID, 'check the connection')
     };
     // END SOCKET HANDLERS
 
@@ -113,5 +131,9 @@ angular.module('bsApp')
 
     this.getUserID = function () {
         return userID;
-    }
+    };
+
+    this.test = function () {
+        socket.emit('test', { gameID: gameID });
+    };
 }]);

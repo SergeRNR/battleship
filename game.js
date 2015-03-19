@@ -22,7 +22,7 @@ module.exports.initGame = function (io, socket) {
             return;
         }
 
-        this.join(data.gameID);
+        this.join(data.gameID.toString());
 
         rivalID = _.keys(_.omit(room, this.id)).pop();
 
@@ -35,8 +35,18 @@ module.exports.initGame = function (io, socket) {
         io.emit('hit', { code: data.code, socketID: data.socketID });
     };
 
+    var shipDamaged = function (data) {
+        //this.broadcast.to(data.gameID).emit('rivalShipDamaged', { code: data.code, socketID: this.id });
+        io.to(data.gameID).emit('rivalShipDamaged', { code: data.code, socketID: this.id });
+    };
+
     var disconnect = function () {
         console.log('Client *** ', this.id, ' *** is disconnected');
+    };
+
+    var test = function (data) {
+        console.log('client', this.id, 'check the connection');
+        this.broadcast.to(data.gameID).emit('test', { socketID: this.id });
     };
 
     socket.emit('connected', { message: 'You are connected with ID: ' + socket.id });
@@ -44,5 +54,8 @@ module.exports.initGame = function (io, socket) {
     socket.on('createGame', createGame);
     socket.on('joinGame', joinGame);
     socket.on('hit', hit);
+    socket.on('shipDamaged', shipDamaged);
     socket.on('disconnect', disconnect);
+
+    socket.on('test', test);
 };

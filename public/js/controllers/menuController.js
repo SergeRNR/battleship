@@ -25,5 +25,9 @@ angular.module('bsApp')
         $scope.addShips = function () {
             BSS.addRandomShips(GM.getUserID());
         };
+
+        $scope.test = function () {
+            GM.test();
+        };
     }
 ]);

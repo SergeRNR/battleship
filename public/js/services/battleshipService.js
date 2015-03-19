@@ -4,14 +4,14 @@ var angular = require('angular'),
 
 angular.module('bsApp')
 .service('BattleshipService', ['XYService', function (XYS) {
-    var ships = {},
+    var ships = window.ships = {},
         fleet = [4,3,3,2,2,2,1,1,1,1],
         //fleet = [1],
 
         self = this;
 
     var Ship = function (id, code, xy, state) {
-        this.id = id;
+        this.id = id || _.random(1E5, 1E6-1);
         this.code = code;
         this.state = state;
         this.y = xy.y;
@@ -25,12 +25,13 @@ angular.module('bsApp')
     };
 
     this.addShip = function (id, code, field, state) {
-        var xy = XYS.getCodeXY(code, field);
+        var xy = XYS.getCodeXY(code),
+            ship = new Ship(id, code, xy, state);
 
         if (!ships[field])
             ships[field] = [];
 
-        ships[field].push(new Ship(id, code, xy, 1));
+        ships[field].push(ship);
 
     };
 

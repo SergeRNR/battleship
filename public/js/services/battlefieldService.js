@@ -50,8 +50,12 @@ angular.module('bsApp')
     };
 
     this.hitField = function (code, field) {
-        if (!BSS.hitShip(code, field))
+        if (!BSS.hitShip(code, field)) {
             this.addCellByCode(code, field);
+            return false;
+        } else {
+            return true;
+        }
     };
 
     this.isAvailableCell = function (code, field) {
