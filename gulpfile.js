@@ -30,7 +30,7 @@ gulp.task('build:js', function() {
 gulp.task('build:css', function () {
     return gulp.src('./public/sass/*.scss')
         .pipe(sass({errLogToConsole: config.errorLogToConsole}))
-        .pipe(autoprefixer(config.get('autoprefixer').browsers))
+        .pipe(autoprefixer(config.get('css')))
         .pipe(gulp.dest('./public/assets'))
         .pipe(gulp.dest('../bs/public/assets'));
 });
