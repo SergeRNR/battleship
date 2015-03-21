@@ -10,8 +10,15 @@
 			"maxAge": null
 		}
 	},
-	"image": {
-		"thumbnailSize" : "150"
-	},
-	"uploadFull": "/home/serge/Work/www/phonegapchat/www/uploads/"
+    "css": {
+        "autoprefixer": {
+          "browsers": ["last 2 versions"]
+        },
+        "errorLogToConsole": true
+    },
+
+    "server": {
+        "env": "development",
+        "debugPort": 5855
+    }
 }

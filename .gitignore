@@ -2,3 +2,5 @@
 /.idea/
 /node_modules/
 *.log
+/public/assets/bs.js
+/public/assets/bs.css
