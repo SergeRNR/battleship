@@ -1,7 +1,7 @@
 'use strict';
 var angular = require('angular'),
     _ = require('underscore'),
-    io =require('../../assets/libs/socket.io');
+    io =require('../libs/socket.io');
 
 angular.module('bsApp')
 .service('GameManager', ['$rootScope', 'BattlefieldService', 'BattleshipService', 'XYService', function ($rootScope, BFS, BSS, XYS) {
